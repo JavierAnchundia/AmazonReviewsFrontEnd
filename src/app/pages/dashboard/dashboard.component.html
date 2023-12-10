@@ -1,0 +1,182 @@
+<div class="h-screen grid grid-cols-1 z-0">
+
+ 
+    <div class="mt-40  md:pl-0  md:mx-20 grid grid-cols-1  ">
+        <p class="font-bold  text-lg md:text-xl place-self-center">
+            Fecha vs Promedio de Score
+        </p>
+        <apx-chart
+            #chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [colors]="chartOptions.colors"
+            [yaxis]="chartOptions.yaxis"
+            [dataLabels]="chartOptions.dataLabels"
+            [markers]="chartOptions.markers"
+            [stroke]="chartOptions.stroke"
+            [xaxis]="chartOptions.xaxis"
+            [tooltip]="chartOptions.tooltip"
+            [annotations]="chartOptions.annotations"
+            class = " z-0"
+        >
+        </apx-chart>
+    </div>
+
+
+    <div class="mt-40  md:pl-0  md:mx-20 grid grid-cols-1  ">
+        <p class="font-bold  text-lg md:text-xl place-self-center">
+            Fecha vs Promedio de Helpfulness
+        </p>
+        <apx-chart
+            #chart2
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [colors]="chartOptions.colors"
+            [yaxis]="chartOptions.yaxis"
+            [dataLabels]="chartOptions.dataLabels"
+            [markers]="chartOptions.markers"
+            [stroke]="chartOptions.stroke"
+            [xaxis]="chartOptions.xaxis"
+            [tooltip]="chartOptions.tooltip"
+            [annotations]="chartOptions.annotations"
+            class = " z-0"
+        >
+        </apx-chart>
+    </div>
+
+   
+    <div class="mt-20 items-center w-full px-4 py-4 rounded-md mx-auto my-10 bg-white dark:bg-gray-800 shadow-md sm:w-11/12 overflow-x-auto h-screen ">
+        <div class=" grid grid-cols-4 border-b mb-4 sticky">
+            <div>
+                <span class="font-bold text-base"> Cantidad de Usuarios:</span>
+                <span class=" text-base "> {{cantidadUsuarios}}</span>
+            </div>
+            
+            
+            <div>
+                <span class="font-bold text-base"> Máx score value:</span>
+                <span class=" text-base "> {{maxScoreValue}}</span>
+            </div>
+            
+            <div>
+                <span class="font-bold  text-base"> Min score value:</span>
+                <span class=" text-base "> {{minScoreValue}}</span>
+            </div>
+
+            <div>
+                <span class="font-bold  text-base"> Promedio score value:</span>
+                <span class=" text-base "> {{promScoreValue}}</span>
+            </div>
+
+           
+
+          
+
+            
+
+        </div>
+        <div class="flex flex-col md:flex-row mt-5 ">
+           
+                <ul class="flex flex-row md:flex-col w-full md:w-2/12 mx-auto py-4 md:py-0 sm:mx-0">
+                
+                <li class="md:inline-flex group  rounded w-full">
+                        <div
+                        class="flex w-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-y-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-400 ease-in">
+                        </div>
+                        <a class="block p-2 text-sm md:text-base font-semibold text-gray-500 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-white"
+                        (click)="onClickVer200()" >Ver 200 primeros registros</a>
+                        <div
+                        class="md:invisible flex h-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-x-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-500 ease-out">
+                        </div>
+                </li>      
+                <li class="md:inline-flex group  rounded w-full">
+                    <div
+                    class="flex w-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-y-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-400 ease-in">
+                    </div>
+                    <a class="block p-2 text-sm md:text-base font-semibold text-gray-500 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-white"
+                    (click)="onClickTop10Mejores()">Top 10 mejores Score</a>
+                    <div
+                    class="md:invisible flex h-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-x-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-500 ease-out">
+                    </div>
+                </li>
+                <li class="md:inline-flex group  rounded w-full">
+                    <div
+                    class="flex w-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-y-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-400 ease-in">
+                    </div>
+                    <a class="block p-2 text-sm md:text-base font-semibold text-gray-500 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-white"
+                    (click)="onClickTop10Peores()">Top 10 peores Score</a>
+                    <div
+                    class="md:invisible flex h-1 group-hover:bg-blue-500 dark:group-hover:bg-white scale-x-0 group-hover:scale-100 transition-transform origin-top rounded-full duration-500 ease-out">
+                    </div>
+                </li>
+                
+                </ul>
+                <div class="flex w-full md:w-10/12 overflow-x-auto ">
+
+                <table class="w-full table-auto ">
+                    <thead class="">
+                    <tr
+                        class="sticky text-sm font-semibold text-left bg-gray-200 divide-x divide-gray-300 text-gray-400 dark:text-gray-500">
+                        <th *ngFor="let column of columnsNames" class="px-4 py-3">{{column}}</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody class="text-sm font-normal text-gray-700 text-left divide-y">
+                    <tr *ngFor="let row of datostbShow" class="py-10 font-medium divide-x group hover:bg-gray-50">
+                        <td class="px-4 py-4 items-center">
+                            
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.productId}}
+                            </div>
+                        </td>
+                        <td class="items-center px-4 py-4">
+                            
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.userId}}
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.profileName}}
+                            </div>
+                        </td>
+
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.helpfulness}}
+                            </div>
+                        </td>
+
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.score}}
+                            </div>
+                        </td>
+
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{dateConvert(row.time)}}
+                            </div>
+                        </td>
+
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.summary}}
+                            </div>
+                        </td>
+
+                        <td class="px-4 py-4 items-center">
+                            <div class="flex text-sm group-hover:text-blue-500 dark:text-gray-200 dark:group-hover:text-gray-600">
+                                {{row.text}}
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    
+                    </tbody>
+                </table>
+                </div>
+        </div>
+    </div>
+</div>
+
